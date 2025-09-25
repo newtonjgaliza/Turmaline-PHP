@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa da Paraíba</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -22,18 +24,21 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
 
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
         #map {
-            height: 100vh;
-            width: 100vw;
-            position: absolute;
-            top: 0;
-            left: 0;
+            flex: 1;
+            width: 100%;
+            position: relative;
         }
 
         /* Estilo da barra de busca */
         .search-container {
             position: absolute;
-            top: 15px;
+            top: 90px;
             left: 50px;
             z-index: 1000;
             width: 300px;
@@ -47,7 +52,7 @@
             position: relative;
             display: flex;
             align-items: center;
-            padding: 8px 12px;
+            padding: 8px 8px;
         }
 
         .search-input {
@@ -115,6 +120,7 @@
     </style>
 </head>
 <body>
+    @include('layout.header')
     <div id="map"></div>
     
     <!-- Barra de busca -->
