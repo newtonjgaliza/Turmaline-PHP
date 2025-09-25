@@ -135,8 +135,12 @@
         // Inicializa o mapa
         const map = L.map('map', {
             zoomControl: true,
-            attributionControl: false
+            attributionControl: false,
+            dragging: true,  // Habilita o arrasto por padrão
         });
+        
+        // Inicializa o controle de arrasto
+        map.dragging.enable();
         
         // Variáveis globais
         let geoJsonLayer;
@@ -182,13 +186,20 @@
             }, 300);
         }
 
-        // Função para destacar o município no mapa
-        function destacarMunicipio(nome) {
-            if (!geoJsonLayer) return;
+        /**
+         * Seleciona um município no mapa (usado tanto para clique quanto busca)
+         * @param {string} nome - Nome do município a ser selecionado
+         * @returns {boolean} Verdadeiro se o município foi encontrado e selecionado
+         */
+        function selecionarMunicipio(nome) {
+            if (!geoJsonLayer) return false;
 
-            // Encontra e destaca o município selecionado
+            let encontrado = false;
+            
+            // Encontra o município pelo nome
             geoJsonLayer.eachLayer(function(layer) {
-                const nomeMunicipio = layer.feature.properties.name; // Note que usamos 'name' em vez de 'nome'
+                const nomeMunicipio = layer.feature?.properties?.name;
+                if (!nomeMunicipio) return;
                 
                 // Compara ignorando acentos e case
                 const normalizar = (str) => {
@@ -196,13 +207,33 @@
                 };
                 
                 if (normalizar(nomeMunicipio) === normalizar(nome)) {
-                    // Centraliza o mapa no município
-                    map.fitBounds(layer.getBounds(), {
-                        padding: [50, 50],
-                        maxZoom: 12
-                    });
+                    encontrado = true;
                     
-                    // Destaca o município
+                    // Se clicar no mesmo município que já está selecionado, desmarca
+                    if (layer === selectedLayer) {
+                        deselectLayer();
+                        return;
+                    }
+                    
+                    // Remove qualquer popup de hover ativo
+                    if (hoverPopup) {
+                        map.removeLayer(hoverPopup);
+                        hoverPopup = null;
+                    }
+                    
+                    // Se houver um município previamente selecionado, desmarca ele
+                    if (selectedLayer) {
+                        geoJsonLayer.resetStyle(selectedLayer);
+                        if (selectedLayer._popup) {
+                            map.removeLayer(selectedLayer._popup);
+                            selectedLayer._popup = null;
+                        }
+                    }
+                    
+                    // Define o novo município como selecionado
+                    selectedLayer = layer;
+                    
+                    // Aplica o estilo visual de seleção
                     layer.setStyle({
                         weight: 3,
                         color: '#f5a142',
@@ -210,17 +241,118 @@
                     });
                     layer.bringToFront();
                     
-                    // Abre o popup
-                    if (layer.getPopup()) {
-                        layer.openPopup();
-                    } else {
-                        layer.bindPopup(`<strong>${nomeMunicipio}</strong>`).openPopup();
+                    // Cria e exibe o popup de seleção
+                    if (layer._municipioName) {
+                        createSelectionPopup(layer, layer._municipioName);
                     }
-                } else {
-                    // Reseta o estilo dos outros municípios
-                    geoJsonLayer.resetStyle(layer);
+                    
+                    // Centraliza o mapa no município
+                    map.fitBounds(layer.getBounds(), {
+                        padding: [50, 50],
+                        maxZoom: 12
+                    });
+                    
+                    // Desativa o arrasto do mapa
+                    if (map.dragging.enabled()) {
+                        map.dragging.disable();
+                    }
                 }
             });
+            
+            return encontrado;
+        }
+        
+        // Função de compatibilidade para manter o código existente
+        function destacarMunicipio(nome) {
+            return selecionarMunicipio(nome);
+        }
+
+        // Variáveis de controle do estado dos municípios
+        let selectedLayer = null;  // Armazena a camada do município atualmente selecionado (por clique ou busca)
+        let hoverPopup = null;     // Referência ao popup de hover ativo no momento
+        
+        /**
+         * Desmarca o município atualmente selecionado (se houver)
+         * Remove o destaque visual e fecha o popup de seleção
+         */
+        function deselectLayer() {
+            if (selectedLayer) {
+                // Remove o destaque visual do município
+                geoJsonLayer.resetStyle(selectedLayer);
+                
+                // Fecha o popup de seleção se existir
+                if (selectedLayer._popup) {
+                    map.removeLayer(selectedLayer._popup);
+                    selectedLayer._popup = null;
+                }
+                
+                // Reativa o arrasto do mapa
+                map.dragging.enable();
+                
+                // Limpa a referência do município selecionado
+                selectedLayer = null;
+            }
+        }
+        
+        /**
+         * Cria e exibe um popup de hover sobre um município
+         * @param {L.Layer} layer - A camada do município
+         * @param {string} content - Conteúdo a ser exibido no popup
+         */
+        function createHoverPopup(layer, content) {
+            // Remove qualquer popup de hover existente
+            if (hoverPopup) {
+                map.removeLayer(hoverPopup);
+                hoverPopup = null;
+            }
+            
+            // Cria um novo popup de hover (sem botão de fechar)
+            hoverPopup = L.popup({
+                closeButton: false,
+                closeOnClick: false,
+                className: 'municipality-hover-popup',
+                offset: [0, 0]
+            })
+            .setLatLng(layer.getBounds().getCenter())
+            .setContent(`<div class="hover-popup">${content}</div>`)
+            .openOn(map);
+            
+            return hoverPopup;
+        }
+        
+        /**
+         * Cria e exibe um popup de seleção para um município
+         * @param {L.Layer} layer - A camada do município
+         * @param {string} content - Conteúdo a ser exibido no popup
+         */
+        function createSelectionPopup(layer, content) {
+            // Remove qualquer popup de seleção existente
+            if (layer._popup) {
+                map.removeLayer(layer._popup);
+            }
+            
+            // Cria um novo popup de seleção (com botão de fechar)
+            const popup = L.popup({
+                closeButton: true,
+                className: 'municipality-selected-popup',
+                autoClose: false,
+                closeOnClick: false
+            })
+            .setLatLng(layer.getBounds().getCenter())
+            .setContent(`<strong>${content}</strong>`)
+            .openOn(map);
+            
+            // Armazena referência do popup na camada
+            layer._popup = popup;
+            
+            // Quando o popup for fechado, desmarca o município
+            popup.on('remove', function() {
+                if (layer === selectedLayer) {
+                    deselectLayer();
+                }
+            });
+            
+            return popup;
         }
 
         // Carrega o GeoJSON e adiciona ao mapa
@@ -238,28 +370,73 @@
                     onEachFeature: function(feature, layer) {
                         // Adiciona popup com o nome do município
                         if (feature.properties && feature.properties.name) {
-                            layer.bindPopup(`<strong>${feature.properties.name}</strong>`);
+                            layer.bindPopup(`<strong>${feature.properties.name}</strong>`, {
+                                closeButton: true,
+                                autoClose: false,
+                                closeOnClick: false,
+                                className: 'municipality-popup'
+                            });
+
+                            // Armazena o nome do município na camada para referência
+                            layer._municipioName = feature.properties.name;
                         }
                         
-                        // Adiciona eventos de mouse
+                        // Adiciona eventos de mouse para interação com os municípios
                         layer.on({
+                            // Evento quando o mouse entra em um município
                             mouseover: function(e) {
                                 const layer = e.target;
-                                layer.setStyle({
-                                    weight: 3,
-                                    color: '#f5a142',
-                                    fillOpacity: 0.7
-                                });
-                                layer.bringToFront();
+                                
+                                // Apenas mostra o popup de hover se nenhum município estiver selecionado
+                                if (!selectedLayer) {
+                                    // Aplica estilo visual de hover
+                                    layer.setStyle({
+                                        weight: 3,
+                                        color: '#f5a142',
+                                        fillOpacity: 0.7
+                                    });
+                                    layer.bringToFront();
+                                    
+                                    // Exibe o popup de hover com o nome do município
+                                    if (layer._municipioName) {
+                                        createHoverPopup(layer, layer._municipioName);
+                                    }
+                                }
                             },
+                            
+                            // Evento quando o mouse sai de um município
                             mouseout: function(e) {
-                                geoJsonLayer.resetStyle(e.target);
+                                const layer = e.target;
+                                
+                                // Apenas remove o hover se não for o município selecionado
+                                if (layer !== selectedLayer) {
+                                    // Remove o estilo de hover
+                                    geoJsonLayer.resetStyle(layer);
+                                    
+                                    // Fecha o popup de hover se existir
+                                    if (hoverPopup) {
+                                        map.removeLayer(hoverPopup);
+                                        hoverPopup = null;
+                                    }
+                                }
                             },
+                            
+                            // Evento de clique em um município
                             click: function(e) {
-                                map.fitBounds(e.target.getBounds(), {
-                                    padding: [50, 50],
-                                    maxZoom: 12
-                                });
+                                const layer = e.target;
+                                
+                                // Remove qualquer popup de hover ativo
+                                if (hoverPopup) {
+                                    map.removeLayer(hoverPopup);
+                                    hoverPopup = null;
+                                }
+                                
+                                // Usa a função unificada para seleção
+                                selecionarMunicipio(layer._municipioName);
+                                
+                                // Previne comportamento padrão
+                                e.originalEvent.preventDefault();
+                                e.originalEvent.stopPropagation();
                             }
                         });
                     }
