@@ -25,14 +25,24 @@
         }
 
         body {
+            height: 100vh;
+            width: 100vw;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         #map {
-            flex: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            position: relative;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .leaflet-top {
+            top: 76px;
         }
 
         /* Estilo da barra de busca */
@@ -120,8 +130,8 @@
     </style>
 </head>
 <body>
-    @include('layout.header')
     <div id="map"></div>
+    @include('layout.header')
     
     <!-- Barra de busca -->
     <div class="search-container">
