@@ -8,6 +8,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Rota para a página de avaliação
+Route::get('/avaliacao', function () {
+    return view('avaliacao');
+});
+
+// Rota para a página de ranking
+Route::get('/ranking', function () {
+    return view('ranking');
+});
+
 // Rota para servir o arquivo GeoJSON
 Route::get('/geojson/paraiba', [GeoJsonController::class, 'paraiba']);
 
