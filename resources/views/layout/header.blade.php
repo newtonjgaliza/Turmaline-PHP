@@ -23,7 +23,7 @@
             <div class="d-flex align-items-center" style="width: 45%;">
                 <img src="{{ asset('images/pbsoft.jpeg') }}" alt="PBSoft Logo" style="height: 40px;">
             </div>
-            <nav class="d-flex align-items-center" style="width: 55%;">
+            <nav class="d-flex align-items-center" style="width: 70%;">
                 <a href="/" class="nav-link mx-1 {{ request()->is('/') ? 'active' : '' }}">
                     <i class="bi bi-map"></i> Mapa
                 </a>
@@ -32,6 +32,11 @@
                 </a>
                 <a href="/ranking" class="nav-link mx-1 {{ request()->is('ranking*') ? 'active' : '' }}">
                     <i class="bi bi-file-check"></i> Ranking
+                </a>
+            </nav>
+            <nav class="d-flex align-items-center" style="width: 8%;">
+                <a href="/login" class="nav-link mx-1">
+                    <i class="bi bi-file-person"></i> Login
                 </a>
             </nav>
         </div>

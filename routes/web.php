@@ -8,6 +8,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Rota para a página de login
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
 // Rota para a página de avaliação
 Route::get('/avaliacao', function () {
     return view('avaliacao');
