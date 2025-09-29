@@ -34,11 +34,20 @@ use Tabuna\Breadcrumbs\Trail;
 //ROTA NO ORCHID
 use App\Orchid\Screens\ReceitaOrcamentariaScreen;
 use App\Orchid\Screens\ReceitaOrcamentariaEditScreen;
+use App\Orchid\Screens\MunicipioScreen;
 
 Route::screen('receitas', ReceitaOrcamentariaScreen::class)->name('platform.receita');
 Route::screen('receita/{receita?}/edit', ReceitaOrcamentariaEditScreen::class)->name('platform.receita.edit');
 
-//ROTA PARA RECEITAORCAMENTARIA
+//ROTA ORCHID PARA MUNICPIOS
+Route::screen('municipios', MunicipioScreen::class)
+    ->name('platform.municipio');
+Route::screen('municipios/{municipio?}/edit', \App\Orchid\Screens\MunicipioEditScreen::class)
+    ->name('platform.municipio.edit');
+
+
+
+//ROTA ORCHID  PARA RECEITAORCAMENTARIA
 Route::screen('receita-orcamentaria', ReceitaOrcamentariaEditScreen::class)
     ->name('platform.receita.orcamentaria');
 

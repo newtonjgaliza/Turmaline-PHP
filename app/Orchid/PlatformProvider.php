@@ -35,6 +35,10 @@ class PlatformProvider extends OrchidServiceProvider
     {
         return [
 
+            Menu::make('Municípios')
+                ->icon('building')
+                ->route('platform.municipio'),
+
             Menu::make('Receita Orçamentária')
                 ->icon('database') // você pode trocar o ícone
                 ->route('platform.receita.orcamentaria'),

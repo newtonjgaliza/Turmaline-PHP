@@ -35,7 +35,7 @@
                 </a>
             </nav>
             <nav class="d-flex align-items-center" style="width: 8%;">
-                <a href="/login" class="nav-link mx-1">
+                <a href="/admin" class="nav-link mx-1">
                     <i class="bi bi-file-person"></i> Login
                 </a>
             </nav>
