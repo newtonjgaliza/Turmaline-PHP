@@ -15,22 +15,22 @@ return new class extends Migration
 
                 // Campos + pontos
                 $table->boolean('managementunitname')->nullable();
-                $table->integer('points_managementunitname')->nullable();
+                #$table->integer('points_managementunitname')->nullable();
 
                 $table->boolean('managementunitid')->nullable();
-                $table->integer('points_managementunitid')->nullable();
+                #$table->integer('points_managementunitid')->nullable();
 
                 $table->boolean('budgetrevenuesource')->nullable();
-                $table->integer('points_budgetrevenuesource')->nullable();
+                #$table->integer('points_budgetrevenuesource')->nullable();
 
                 $table->boolean('budgetrevenuedescription')->nullable();
-                $table->integer('points_budgetrevenuedescription')->nullable();
+                #table->integer('points_budgetrevenuedescription')->nullable();
 
                 $table->boolean('predictedamount')->nullable();
-                $table->integer('points_predictedamount')->nullable();
+                #$table->integer('points_predictedamount')->nullable();
 
                 $table->boolean('collectionamount')->nullable();
-                $table->integer('points_collectionamount')->nullable();
+                #$table->integer('points_collectionamount')->nullable();
 
                 // Relacionamento
                 $table->unsignedBigInteger('municipio_id');

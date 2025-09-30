@@ -14,13 +14,13 @@ return new class extends Migration
                 $table->id(); // SERIAL PRIMARY KEY
 
                 $table->boolean('multiyearplan')->nullable();
-                $table->integer('points_multiyearplan')->nullable();
+                #$table->integer('points_multiyearplan')->nullable();
 
                 $table->boolean('budgetguidelineslaw')->nullable();
-                $table->integer('points_budgetguidelineslaw')->nullable();
+                #$table->integer('points_budgetguidelineslaw')->nullable();
 
                 $table->boolean('annualbudgetlaw')->nullable();
-                $table->integer('points_annualbudgetlaw')->nullable();
+                #$table->integer('points_annualbudgetlaw')->nullable();
 
                 $table->unsignedBigInteger('municipio_id')->nullable(); // FK
                 $table->timestamps();

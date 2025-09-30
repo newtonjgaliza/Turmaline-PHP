@@ -14,37 +14,37 @@ return new class extends Migration
                 $table->id(); // SERIAL PRIMARY KEY
 
                 $table->boolean('notice')->nullable();
-                $table->integer('points_notice')->nullable();
+                #$table->integer('points_notice')->nullable();
 
                 $table->boolean('bigmodality')->nullable();
-                $table->integer('points_bigmodality')->nullable();
+                #$table->integer('points_bigmodality')->nullable();
 
                 $table->boolean('managementunitname')->nullable();
-                $table->integer('points_managementunitname')->nullable();
+                #$table->integer('points_managementunitname')->nullable();
 
                 $table->boolean('managementunitid')->nullable();
-                $table->integer('points_managementunitid')->nullable();
+                #$table->integer('points_managementunitid')->nullable();
 
                 $table->boolean('publicationdate')->nullable();
-                $table->integer('points_publicationdate')->nullable();
+                #$table->integer('points_publicationdate')->nullable();
 
                 $table->boolean('realizationdate')->nullable();
-                $table->integer('points_realizationdate')->nullable();
+                #$table->integer('points_realizationdate')->nullable();
 
                 $table->boolean('bitid')->nullable();
-                $table->integer('points_bitid')->nullable();
+                #$table->integer('points_bitid')->nullable();
 
                 $table->boolean('object')->nullable();
-                $table->integer('points_object')->nullable();
+                #$table->integer('points_object')->nullable();
 
                 $table->boolean('biddername')->nullable();
-                $table->integer('points_biddername')->nullable();
+                #$table->integer('points_biddername')->nullable();
 
                 $table->boolean('identificationnumber')->nullable();
-                $table->integer('points_identificationnumber')->nullable();
+                #$table->integer('points_identificationnumber')->nullable();
 
                 $table->boolean('bidderproposalamount')->nullable();
-                $table->integer('points_bidderproposalamount')->nullable();
+                #$table->integer('points_bidderproposalamount')->nullable();
 
                 $table->unsignedBigInteger('municipio_id')->nullable(); // FK
                 $table->timestamps();

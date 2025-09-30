@@ -14,31 +14,31 @@ return new class extends Migration
                 $table->id(); // SERIAL PRIMARY KEY
 
                 $table->boolean('managementunitname')->nullable();
-                $table->integer('points_managementunitname')->nullable();
+                #$table->integer('points_managementunitname')->nullable();
 
                 $table->boolean('managementunitid')->nullable();
-                $table->integer('points_managementunitid')->nullable();
+                #$table->integer('points_managementunitid')->nullable();
 
                 $table->boolean('contractorname')->nullable();
-                $table->integer('points_contractorname')->nullable();
+                #$table->integer('points_contractorname')->nullable();
 
                 $table->boolean('identificationnumber')->nullable();
-                $table->integer('points_identificationnumber')->nullable();
+                #$table->integer('points_identificationnumber')->nullable();
 
                 $table->boolean('publicationdate')->nullable();
-                $table->integer('points_publicationdate')->nullable();
+                #$table->integer('points_publicationdate')->nullable();
 
                 $table->boolean('validitydate')->nullable();
-                $table->integer('points_validitydate')->nullable();
+                #$table->integer('points_validitydate')->nullable();
 
                 $table->boolean('contractamount')->nullable();
-                $table->integer('points_contractamount')->nullable();
+                #$table->integer('points_contractamount')->nullable();
 
                 $table->boolean('object')->nullable();
-                $table->integer('points_object')->nullable();
+                #$table->integer('points_object')->nullable();
 
                 $table->boolean('contractid')->nullable();
-                $table->integer('points_contractid')->nullable();
+                #$table->integer('points_contractid')->nullable();
 
                 $table->unsignedBigInteger('municipio_id')->nullable(); // FK
                 $table->timestamps();

@@ -1,0 +1,275 @@
+CREATE TABLE pontos_receita_orcamentaria (
+	id SERIAL KEY,
+	managementunitname INT NOT NULL,
+	managementunitid INT NOT NULL,
+	budgetrevenuesource INT NOT NULL,
+	budgetrevenuedescription INT NOT NULL,
+	predictedamount INT NOT NULL,
+	collectionamount INT NOT NULL,
+	municipio_id INT NOT NULL,
+	CONSTRANT fk_municipio
+		FOREIGN KEY (municipio_id)
+		REFERENCES Município (id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE pontos_receita_extarorcamentaria (
+	id SERIAL KEY,
+	managementunitname INT NOT NULL,
+	managementunitid INT NOT NULL,
+	realizedamount INT NOT NULL,
+	extrabudgetrevenuesource INT NOT NULL,
+	extrabudgetrevenuedescription INT NOT NULL,
+	extrabudgetrevenueid INT NOT NULL,
+	nomenclature INT NOT NULL,
+	extrabudgetrevenuehistory INT NOT NULL,
+	municipio_id INT NOT NULL,
+	CONSTRANT fk_municipio
+		FOREIGN KEY (municipio_id)
+		REFERENCES Município (id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE pontos_despesa_orcamentaria (receita
+	id SERIAL KEY,
+	fixedamount INT NOT NULL,
+	paymentamount INT NOT NULL,
+	managementunitname INT NOT NULL,
+	managementunitid INT NOT NULL,
+	budgetexpenditurefunction INT NOT NULL,
+	budgetexpendituresubfunction INT NOT NULL,
+	budgetexpenditureprogram INT NOT NULL,
+	budgetexpenditureaction INT NOT NULL,
+	economixcategory INT NOT NULL,
+	budgetnature INT NOT NULL,
+	budgetexpendituremodality INT NOT NULL,
+	budgetexpenditureelement INT NOT NULL,
+	commitedexpenditureid INT NOT NULL,
+	commitedexpendituredate INT NOT NULL,
+	creditorname INT NOT NULL,
+	identificationnumber INT NOT NULL,
+	bidid INT NOT NULL,
+	bidmodality INT NOT NULL,
+	commitedvalue INT NOT NULL,
+	commitedexpenditurehistory INT NOT NULL,
+	municipio_id INT NOT NULL,
+	CONSTRANT fk_municipio
+		FOREIGN KEY (municipio_id)
+		REFERENCES Municípios (id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE pontos_despesa_extraorcamentaria (
+	id SERIAL KEY,
+	paymentamount INT NOT NULL,
+	managementunitname INT NOT NULL,
+	managementunitid INT NOT NULL,
+	extrabudgetexpenditureid INT NOT NULL,
+	extrabudgetexpendituredescription INT NOT NULL,
+	movedate INT NOT NULL,
+	extrabudgetexpendituredescription INT NOT NULL,
+	tadid INT NOT NULL,
+	tabdate INT NOT NULL,
+	creditorname INT NOT NULL,
+	identificationnumber INT NOT NULL,
+	tabhistory INT NOT NULL,
+	municipio_id INT NOT NULL,
+	CONSTRANT fk_municipio
+		FOREIGN KEY (municipio_id)
+		REFERENCES Município (id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE pontos_documento_pagamento(
+	id SERIAL KEY,
+	managementunitname INT NOT NULL,
+	managementunitid INT NOT NULL,
+	bankoperationid INT NOT NULL,
+	bankaccountnumber INT NOT NUUl,
+	paymentdate INT NOT NULL,
+	identificationnumber INT NOT NULL,
+	creditorname INT NOT NULL,
+	paymentamout INT NOT NULL,
+	fundingsource INT NOT NULL,
+	paymenthistory INT NOT NULL,
+	municipio_id INT NOT NULL,
+	CONSTRANT fk_municipio
+		FOREIGN KEY (municpio_id)
+		REFERENCES Município (id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE pontos_contratos (
+	id SERIAL KEY,
+	managementunitname INT NOT NULL,
+	managementunitname INT NOT NULL,
+	contractorname INT NOT NULL,
+	identificationnumber INT NOT NULL,
+	publicationdate INT NOT NULL,
+	validityname INT NOT NULL,
+	contractamount INT NOT NULL,
+	object INT NOT NULL,
+	contractid INT NOT NULL,
+	municpio_id INT NOT NULL,
+	CONSTRANT fk_municipio
+		FOREIGN KEY (municipio_id)
+		REFERENCES Município (id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE pontos_instrumento_planejamento (
+	id SERIAL KEY,
+	multiyearplan INT NOT NULL,
+	budgetguidelineslaw INT NOT NULL,
+	annualbudgetlaw INT NOT NULL,
+	municipio_id INT NOT NULL,
+	CONSTRAMT fk_municipio
+		FOREIGN KEY (municipio_id)
+		REFERENCES Município (id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE pontos_procedimentos_licitatorios (
+	id SERIAL KEY,
+	notice INT NOT NULL,
+	bidmodality INT NOT NULL,
+	managementunitname INT NOT NULL,
+	managementunitid INT NOT NULL,
+	publicationdate INT NOT NULL,
+	realizationdate INT NOT NULL,
+	bidid INT NOT NULL,
+	object INT NOT NULL,
+	biddername INT NOT NULL,
+	identificationnumber INT NOT NULL,
+	bidderproposalamount INT NOT NULL,
+	municipio_id INT NOT NULL,
+	CONSTRANT fk_municipio
+		FOREIGN KEY (municipio_id)
+		REFERENCES Municípios (id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE pontos_convenios (
+	id SERIAL KEY,
+	agreementid INT NOT NULL,
+	grantorname INT NOT NULL,
+	contractorname INT NOT NULL,
+	celebrationdate iNT NOT NULL,
+	pulicationdate INT NOT NULL,
+	validitydate INT NOT NULL,
+	object INT NOT NULL,
+	agreementamount INT NOT NULL,
+	counterpartamount INT NOT NULL,
+	municipio_id INT NOT NULL,
+	CONSTRANT fk_municipio
+		FOREIGN KEY (municipio_id)
+		REFERENCES Municípios (id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE pontos_pessoal (
+	id SERIAL KEY,
+	employeename INT NOT NULL,
+	identificationnumber INT NOT NULL,
+	employmentcontracttype INT NOT NULL,
+	employeeposition INT NOT NULL,
+	employeesalary INT NOT NULL,
+	municipio_id INT NOT NULL
+	CONSTRANT fk_municipio
+		FOREIGN KEY (municipio_id)
+		REFERENCES Municípios (id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+
+CRETE TABLE pontos_informacao_cidadao (
+	id SERIAL KEY,
+	tmsic INT NOT NULL,
+	tmsearch INT NOT NULL,
+	tmexecute INT NOT NULL,
+	municipio_id INT NOT NULL,
+	CONSTRANT fk_municipio
+		FOREIGN KEY (municipios_id)
+		REFERENCES Municípios (id)
+		ON DELETE CASCADE
+		ON UPDAT CASCADE
+
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

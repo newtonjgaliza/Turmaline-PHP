@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             MunicipioSeeder::class,
+            ReceitaOrcamentariaSeeder::class,
         ]);
 
         // User::factory(10)->create();

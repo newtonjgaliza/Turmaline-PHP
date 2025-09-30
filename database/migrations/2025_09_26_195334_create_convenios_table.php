@@ -14,31 +14,31 @@ return new class extends Migration
                 $table->id(); // SERIAL PRIMARY KEY
 
                 $table->boolean('agreementid')->nullable();
-                $table->integer('points_agreementid')->nullable();
+                #$table->integer('points_agreementid')->nullable();
 
                 $table->boolean('grantorname')->nullable();
-                $table->integer('points_grantorname')->nullable();
+                #$table->integer('points_grantorname')->nullable();
 
                 $table->boolean('contractorname')->nullable();
-                $table->integer('points_contractorname')->nullable();
+                #$table->integer('points_contractorname')->nullable();
 
                 $table->boolean('celebrationdate')->nullable();
-                $table->integer('points_celebrationdate')->nullable();
+                #$table->integer('points_celebrationdate')->nullable();
 
                 $table->boolean('publicationdate')->nullable();
-                $table->integer('points_publicationdate')->nullable();
+                #$table->integer('points_publicationdate')->nullable();
 
                 $table->boolean('validitydate')->nullable();
-                $table->integer('points_validitydate')->nullable();
+                #$table->integer('points_validitydate')->nullable();
 
                 $table->boolean('object')->nullable();
-                $table->integer('points_object')->nullable();
+                #$table->integer('points_object')->nullable();
 
                 $table->boolean('agrementamount')->nullable();
-                $table->integer('points_agrementamount')->nullable();
+                #$table->integer('points_agrementamount')->nullable();
 
                 $table->boolean('counterparatamount')->nullable();
-                $table->integer('points_counterparatamount')->nullable();
+                #$table->integer('points_counterparatamount')->nullable();
 
                 $table->unsignedBigInteger('municipio_id')->nullable(); // FK
                 $table->timestamps();

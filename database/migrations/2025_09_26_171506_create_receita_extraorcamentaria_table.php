@@ -14,28 +14,28 @@ return new class extends Migration
                 $table->id(); // SERIAL PRIMARY KEY
 
                 $table->boolean('managementunitname')->nullable();
-                $table->integer('points_managementunitname')->nullable();
+                #$table->integer('points_managementunitname')->nullable();
 
                 $table->boolean('managementunitid')->nullable();
-                $table->integer('points_managementunitid')->nullable();
+                #$table->integer('points_managementunitid')->nullable();
 
                 $table->boolean('realiizedamount')->nullable();
-                $table->integer('points_realiizedamount')->nullable();
+                #$table->integer('points_realiizedamount')->nullable();
 
                 $table->boolean('extrabudgetrevenuesource')->nullable();
-                $table->integer('points_extrabudgetrevenuesource')->nullable();
+                #$table->integer('points_extrabudgetrevenuesource')->nullable();
 
                 $table->boolean('extrabudgetrevenuedescription')->nullable();
-                $table->integer('points_extrabudgetrevenuedescription')->nullable();
+                #$table->integer('points_extrabudgetrevenuedescription')->nullable();
 
                 $table->boolean('extrabudgetrevenueid')->nullable();
-                $table->integer('points_extrabudgetrevenueid')->nullable();
+                #$table->integer('points_extrabudgetrevenueid')->nullable();
 
                 $table->boolean('nomenclature')->nullable();
-                $table->integer('points_nomenclature')->nullable();
+                #$table->integer('points_nomenclature')->nullable();
 
                 $table->boolean('extrabudgetrevenuehistory')->nullable();
-                $table->integer('points_extrabudgetrevenuehistory')->nullable();
+                #$table->integer('points_extrabudgetrevenuehistory')->nullable();
 
                 $table->unsignedBigInteger('municipio_id'); // FK para municipios
                 $table->timestamps();

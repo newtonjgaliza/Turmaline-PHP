@@ -14,58 +14,58 @@ return new class extends Migration
                 $table->id();
 
                 $table->boolean('fixedamount')->nullable();
-                $table->integer('points_fixedamount')->nullable();
+                #$table->integer('points_fixedamount')->nullable();
 
                 $table->boolean('paymentamount')->nullable();
-                $table->integer('points_paymentamount')->nullable();
+                #$table->integer('points_paymentamount')->nullable();
 
                 $table->boolean('managementunitname')->nullable();
-                $table->integer('points_managementunitname')->nullable();
+                #Q$table->integer('points_managementunitname')->nullable();
 
                 $table->boolean('managementunitid')->nullable();
-                $table->integer('points_managementunitid')->nullable();
+                #$table->integer('points_managementunitid')->nullable();
 
                 $table->boolean('budgetexpenditurefunction')->nullable();
-                $table->integer('points_budgetexpenditurefunction')->nullable();
+                #$table->integer('points_budgetexpenditurefunction')->nullable();
 
                 $table->boolean('budgetexpendituresubfunction')->nullable();
-                $table->integer('points_budgetexpendituresubfunction')->nullable();
+                #$table->integer('points_budgetexpendituresubfunction')->nullable();
 
                 $table->boolean('budgetexpenditureprogram')->nullable();
-                $table->integer('points_budgetexpenditureprogram')->nullable();
+                #$table->integer('points_budgetexpenditureprogram')->nullable();
 
                 $table->boolean('budgetexpenditureaction')->nullable();
-                $table->integer('points_budgetexpenditureaction')->nullable();
+                #$table->integer('points_budgetexpenditureaction')->nullable();
 
                 $table->boolean('economiccategory')->nullable();
-                $table->integer('points_economiccategory')->nullable();
+                #$table->integer('points_economiccategory')->nullable();
 
                 $table->boolean('budgetnature')->nullable();
-                $table->integer('points_budgetnature')->nullable();
+                #$table->integer('points_budgetnature')->nullable();
 
                 $table->boolean('budgetexpendituremodality')->nullable();
-                $table->integer('points_budgetexpendituremodality')->nullable();
+                #$table->integer('points_budgetexpendituremodality')->nullable();
 
                 $table->boolean('budgetexpenditureelement')->nullable();
-                $table->integer('points_budgetexpenditureelement')->nullable();
+                #$table->integer('points_budgetexpenditureelement')->nullable();
 
                 $table->boolean('commitedexpendituredate')->nullable();
-                $table->integer('points_commitedexpendituredate')->nullable();
+                #$table->integer('points_commitedexpendituredate')->nullable();
 
                 $table->boolean('creditorname')->nullable();
-                $table->integer('points_creditorname')->nullable();
+                #$table->integer('points_creditorname')->nullable();
 
                 $table->boolean('identificationnumber')->nullable();
-                $table->integer('points_identificationnumber')->nullable();
+                #$table->integer('points_identificationnumber')->nullable();
 
                 $table->boolean('bitid')->nullable();
-                $table->integer('points_bitid')->nullable();
+                #$table->integer('points_bitid')->nullable();
 
                 $table->boolean('commitedvalue')->nullable();
-                $table->integer('points_commitedvalue')->nullable();
+                #$table->integer('points_commitedvalue')->nullable();
 
                 $table->boolean('commitedexpenditurehistory')->nullable();
-                $table->integer('points_commitedexpenditurehistory')->nullable();
+                #$table->integer('points_commitedexpenditurehistory')->nullable();
 
                 $table->unsignedBigInteger('municipio_id')->nullable();
                 $table->timestamps();

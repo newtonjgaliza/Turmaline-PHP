@@ -14,19 +14,19 @@ return new class extends Migration
                 $table->id(); // SERIAL PRIMARY KEY
 
                 $table->boolean('emploeyeename')->nullable();
-                $table->integer('points_emploeyeename')->nullable();
+                #$table->integer('points_emploeyeename')->nullable();
 
                 $table->boolean('identificationnumber')->nullable();
-                $table->integer('points_identificationnumber')->nullable();
+                #$table->integer('points_identificationnumber')->nullable();
 
                 $table->boolean('employmentcontrattype')->nullable();
-                $table->integer('points_employmentcontrattype')->nullable();
+                #$table->integer('points_employmentcontrattype')->nullable();
 
                 $table->boolean('employeeposition')->nullable();
-                $table->integer('points_employeeposition')->nullable();
+                #$table->integer('points_employeeposition')->nullable();
 
                 $table->boolean('employeesalary')->nullable();
-                $table->integer('points_employeesalary')->nullable();
+                #$table->integer('points_employeesalary')->nullable();
 
                 $table->unsignedBigInteger('municipio_id')->nullable(); // FK
                 $table->timestamps();
